@@ -1,0 +1,14 @@
+- name: Getting XSRF Token
+  uri:
+    url: "{{ xsrf_token_api }}"
+    method: GET
+    return_content: yes
+    headers:
+      Cookie: "{{ session_cookie.cookies_string }}"
+    validate_certs: no
+  delegate_to: localhost
+  register: xsrf_token
+
+- name: Debug
+  debug:
+    var: xsrf_token.content
