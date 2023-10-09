@@ -3,6 +3,9 @@
   hosts: vmanage
   gather_facts: no
   vars:
+    vmanage: "131.226.217.159"
+    username: "admin"
+    password: "C1sco12345"
     base_url: "https://{{ vmanage }}"
     auth_sess_cookie_api: "{{ base_url }}/j_security_check"
     xsrf_token_api: "{{ base_url }}/dataservice/client/token"
