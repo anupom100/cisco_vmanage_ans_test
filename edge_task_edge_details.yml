@@ -1,0 +1,21 @@
+- name: Getting Edge Details
+  uri:
+    url: "{{ edge_details_api }}"
+    method: GET
+    #return_content: yes
+    headers:
+      Content-Type: "application/json"
+      X-XSRF-TOKEN: "{{ xsrf_token.content }}"
+      Cookie: "{{ session_cookie.cookies_string }}"
+    validate_certs: no
+  delegate_to: localhost
+  register: edge_details
+
+- name: Edge Serial Number to Edge UUID
+  set_fact:
+    edg_de: "{{ edg_de|default({}) | combine({ item.subjectSerialNumber: item.uuid }) }}"
+  loop: "{{ edge_details.json.data }}"
+
+- name: Debug
+  debug:
+    var: edg_de
