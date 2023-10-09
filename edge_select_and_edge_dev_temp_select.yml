@@ -1,0 +1,16 @@
+---
+- name: Edge Select for Template Attachment
+  hosts: vmanage
+  tasks:
+    - import_tasks: vmanage_task_auth_session_cookie.yml
+      tags:
+        - vmanage_auth
+    - import_tasks: vmanage_task_xsrf_token.yml
+      tags:
+        - vmanage_xsrf
+    - import_tasks: edge_task_edge_details.yml
+      tags:
+        - edge_details
+    - import_tasks: edge_task_edge_device_template_details.yml
+      tags:
+        - edge_dev_temp_details
