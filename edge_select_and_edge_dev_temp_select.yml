@@ -2,6 +2,12 @@
 - name: Edge Select for Template Attachment
   hosts: vmanage
   gather_facts: no
+  vars:
+    base_url: "https://{{ vmanage }}"
+    auth_sess_cookie_api: "{{ base_url }}/j_security_check"
+    xsrf_token_api: "{{ base_url }}/dataservice/client/token"
+    edge_details_api: "{{ base_url }}/dataservice/system/device/vedges"
+    edge_device_templates_api: "{{ base_url }}/dataservice/template/device"
   tasks:
     - import_tasks: vmanage_task_auth_session_cookie.yml
       tags:
