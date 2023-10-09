@@ -1,0 +1,23 @@
+- name: Getting Edge Device Templates
+  uri:
+    url: "{{ edge_device_templates_api }}"
+    method: GET
+    #return_content: yes
+    headers:
+      Content-Type: "application/json"
+      X-XSRF-TOKEN: "{{ xsrf_token.content }}"
+      Cookie: "{{ session_cookie.cookies_string }}"
+    validate_certs: no
+  delegate_to: localhost
+  register: edge_device_details
+
+- name: Edge Device Template Name to Edge Device Temnplate Ids
+  set_fact:
+    edg_dev_tem_ids: "{{ edg_dev_tem_ids|default({}) | combine({ item.templateName: item.templateId }) }}"
+  loop: "{{ edge_device_details.json.data }}"
+    #edg_de: "{{ edg_de|default({}) | combine({ item.subjectSerialNumber: item.uuid }) }}"
+  #loop: "{{ edge_details.json.data }}"
+
+- name: Debug
+  debug:
+    var: edg_dev_tem_ids
