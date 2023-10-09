@@ -1,6 +1,7 @@
 ---
 - name: Edge Select for Template Attachment
   hosts: vmanage
+  gather_facts: no
   tasks:
     - import_tasks: vmanage_task_auth_session_cookie.yml
       tags:
