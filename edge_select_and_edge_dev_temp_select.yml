@@ -11,6 +11,7 @@
     xsrf_token_api: "{{ base_url }}/dataservice/client/token"
     edge_details_api: "{{ base_url }}/dataservice/system/device/vedges"
     edge_device_templates_api: "{{ base_url }}/dataservice/template/device"
+    auth_sess_cookie_pl: "j_username={{ username }}&j_password={{ password }}"
   tasks:
     - import_tasks: vmanage_task_auth_session_cookie.yml
       tags:
