@@ -1,0 +1,7 @@
+---
+- name: Test PL
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Debug
+      debug: "Hello World"
