@@ -1,0 +1,14 @@
+- name: Authentication & Getting Session Cookie
+  uri:
+    url: "{{ auth_sess_cookie_api }}"
+    method: POST
+    headers:
+      Content-Type: "application/x-www-form-urlencoded"
+    body: "{{ auth_sess_cookie_pl }}"
+    validate_certs: no
+  delegate_to: localhost
+  register: session_cookie
+
+- name: Debug
+  debug:
+    var: session_cookie.cookies_string
