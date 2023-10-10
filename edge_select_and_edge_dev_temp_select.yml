@@ -5,7 +5,7 @@
   vars:
     vmanage: "4.234.96.183"
     username: "admin"
-    password: "admin@123"
+    password: "{{ password }}"
     base_url: "https://{{ vmanage }}"
     auth_sess_cookie_api: "{{ base_url }}/j_security_check"
     xsrf_token_api: "{{ base_url }}/dataservice/client/token"
