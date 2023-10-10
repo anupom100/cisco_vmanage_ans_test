@@ -3,7 +3,7 @@
   hosts: vmanage
   gather_facts: no
   vars:
-    vmanage: "4.234.96.183"
+    vmanage: "{{ vmanage_ip }}"
     username: "admin"
     password: "{{ password }}"
     base_url: "https://{{ vmanage }}"
